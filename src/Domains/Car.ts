@@ -1,14 +1,3 @@
-// type CarParams = {
-//   id?: string | undefined,
-//   model: string,
-//   year: number,
-//   color: string,
-//   status?: boolean,
-//   buyValue: number,
-//   doorsQty: number,
-//   seatsQty: number,
-// };
-
 import ICar from '../Interfaces/ICar';
 
 class Car {
