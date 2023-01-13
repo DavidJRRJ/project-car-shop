@@ -21,6 +21,12 @@ class CarService {
     return this.createCarDomain(newCar);
   }
 
+  public async update(id: string, car: ICar) {
+    if (!this.isValidId(id)) throw new Error('Invalid mongo id');
+    const carModel = new CarModel();
+    return carModel.update(id, car);
+  }
+
   public async getById(id: string) {
     if (!this.isValidId(id)) throw new Error('Invalid mongo id');
     const carModel = new CarModel();

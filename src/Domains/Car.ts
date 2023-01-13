@@ -20,6 +20,10 @@ class Car {
     this.doorsQty = params.doorsQty;
     this.seatsQty = params.seatsQty;
   }
+
+  public getId() {
+    return this.id;
+  }
 }
 
 export default Car;
