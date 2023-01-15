@@ -29,6 +29,11 @@ class MotorcycleService {
     const allmoto = moto.map((obj) => this.createMotoDomain(obj));
     return allmoto;
   }
+
+  public async update(id: string, car: IMotorcycle) {
+    const motoModel = new MotorcycleModel();
+    return motoModel.update(id, car);
+  }
 }
 
 export default MotorcycleService;
