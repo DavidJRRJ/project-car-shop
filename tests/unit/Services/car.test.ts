@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-// import ICar from '../../../src/Interfaces/ICar';
 import Car from '../../../src/Domains/Car';
 import CarService from '../../../src/Services/CarService';
 import { carArray, carInput, carOutput, carUpdate, carUpdated } from './Mocks/carMocks';
@@ -10,9 +9,9 @@ describe('Testes da camada service de /cars', function () {
   it('Verifica se é possível cadastrar um carro', async function () {
     const output: Car = new Car(carInput);
     sinon.stub(Model, 'create').resolves(output);
-
+   
     const service = new CarService();
-    const result = await service.create(carInput);
+    const result = await service.create(carInput); 
 
     expect(result).to.be.deep.equal(output);
   });
@@ -72,6 +71,18 @@ describe('Testes da camada service de /cars', function () {
     const result = await service.update(input, carUpdate);
 
     expect(result).to.be.deep.equal(output);
+  });
+
+  it('Verifica o erro ao fazer o update de um id inexistente', async function () {
+    const input = 'caneta azul';
+    sinon.stub(Model, 'findByIdAndUpdate').resolves();
+
+    try {
+      const service = new CarService();
+      await service.update(input, carUpdate);
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Invalid mongo id');
+    }
   });
 
   afterEach(function () {
