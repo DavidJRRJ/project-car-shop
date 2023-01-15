@@ -10,10 +10,24 @@ class MotorcycleService {
     return null;
   }
 
-  public async create(car: IMotorcycle) {
+  public async create(moto: IMotorcycle) {
     const motoModel = new MotorcycleModel();
-    const newMoto = await motoModel.create(car);
+    const newMoto = await motoModel.create(moto);
     return this.createMotoDomain(newMoto);
+  }
+
+  public async getById(id: string) {
+    const motoModel = new MotorcycleModel();
+    const moto = await motoModel.getById(id);
+    if (!moto) throw new Error('Motorcycle not found');
+    return this.createMotoDomain(moto);
+  }
+
+  public async getAll() {
+    const motoModel = new MotorcycleModel();
+    const moto = await motoModel.getAll();
+    const allmoto = moto.map((obj) => this.createMotoDomain(obj));
+    return allmoto;
   }
 }
 
