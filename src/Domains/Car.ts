@@ -1,28 +1,14 @@
 import ICar from '../Interfaces/ICar';
+import Vehicle from './Vehicle';
 
-class Car {
-  protected id: string | undefined;
-  protected model: string;
-  protected year: number;
-  protected color: string;
-  protected status: boolean;
-  protected buyValue: number;
+class Car extends Vehicle {
   private doorsQty: number;
   private seatsQty: number;
 
-  constructor(params: ICar) {
-    this.id = params.id;
-    this.model = params.model;
-    this.year = params.year;
-    this.color = params.color;
-    this.status = params.status || false;
-    this.buyValue = params.buyValue;
-    this.doorsQty = params.doorsQty;
-    this.seatsQty = params.seatsQty;
-  }
-
-  public getId() {
-    return this.id;
+  constructor(obj: ICar) {
+    super(obj);
+    this.doorsQty = obj.doorsQty;
+    this.seatsQty = obj.seatsQty;
   }
 }
 

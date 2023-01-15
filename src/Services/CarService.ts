@@ -10,11 +10,6 @@ class CarService {
     return null;
   }
 
-  private isValidId(id: string): boolean {
-    const idRegex = /^[a-fA-F0-9]{24}$/;
-    return idRegex.test(id);
-  }
-
   public async create(car: ICar) {
     const carModel = new CarModel();
     const newCar = await carModel.create(car);
@@ -22,13 +17,11 @@ class CarService {
   }
 
   public async update(id: string, car: ICar) {
-    if (!this.isValidId(id)) throw new Error('Invalid mongo id');
     const carModel = new CarModel();
     return carModel.update(id, car);
   }
 
   public async getById(id: string) {
-    if (!this.isValidId(id)) throw new Error('Invalid mongo id');
     const carModel = new CarModel();
     const car = await carModel.getById(id);
     if (!car) throw new Error('Car not found');
